@@ -73,7 +73,7 @@ function coinList(coinArray){
         let rank = coinObj.rank
         let list = document.querySelector('#rankedList')
         let listCoin = document.createElement('li')
-        listCoin.textContent = `${rank} ${name} ${symbol}`
+        listCoin.textContent = `${rank} | ${name} | ${symbol}`
         list.appendChild(listCoin)
     })
 }
