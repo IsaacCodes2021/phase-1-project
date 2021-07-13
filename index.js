@@ -10,8 +10,9 @@ function getCoins() {
     fetch("https://api.coincap.io/v2/assets", requestOptions)
     .then(response => response.json())
     .then(result => {
-        console.log(result.data)
+        // console.log(result.data)
         displayCoins(result.data)
+        coinList(result.data)
     })
     .catch(error => console.log('error', error));
     
@@ -33,4 +34,21 @@ function displayCoins(coinArray) {
     oneCard.appendChild(text)
     oneCard.appendChild(chartDiv)
     });
+}
+
+// render list of coins
+function coinList(coinArray){
+    coinArray.forEach(coinObj => {
+        let name = coinObj.name
+        let symbol = coinObj.symbol
+        let rank = coinObj.rank
+        let list = document.querySelector('#rankedList')
+        let listCoin = document.createElement('li')
+        listCoin.textContent = `${rank} ${name} ${symbol}`
+        list.appendChild(listCoin)
+    })
+    // grab the name, symbol and rank from the coinArray
+    // create an ordered list
+    // create a list item
+    // add the name, symbol and rank to the list item
 }
