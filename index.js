@@ -25,42 +25,70 @@ function displayCoins(coinArray) {
     let oneCard = document.createElement('div')
     let coinPrice = parseFloat(Number(element['priceUsd'])).toFixed(2)
     let chartDiv = document.createElement('div')
-    chartDiv.innerHTML = `<!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container" style = "height: 363px">
-      <div id="tradingview_537d0"></div>
-      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
-      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-      <script type="text/javascript">
-      new TradingView.widget(
-      {
-      "width": 400,
-      "height": 363,
-      "symbol": "NASDAQ:AAPL",
-      "interval": "15",
-      "timezone": "America/Los_Angeles",
-      "theme": "dark",
-      "style": "2",
-      "locale": "en",
-      "toolbar_bg": "#f1f3f6",
-      "enable_publishing": false,
-      "hide_top_toolbar": true,
-      "hide_legend": true,
-      "save_image": false,
-      "container_id": "tradingview_537d0"
-    }
-      );
-      </script>
-    </div>
-    <!-- TradingView Widget END -->`
-    chartDiv.setAttribute('class', 'chart-container')
-    oneCard.setAttribute('id', `${element[`name`]}`)
-    oneCard.setAttribute('class', 'coin-card')
     let text = document.createElement('h1')
-    text.textContent = `#${element['rank']} | ${element[`name`]} | $${coinPrice}`
+    let clicky = document.createElement('button')
+    // chartDiv.innerHTML =`<!-- TradingView Widget BEGIN -->
+    // <div class="tradingview-widget-container">
+    //   <div id="tradingview_f089c"></div>
+    //   <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+    //   <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    //   <script type="text/javascript">
+    //   new TradingView.widget(
+    //   {
+    //   "autosize": true,
+    //   "symbol": "NASDAQ:AAPL",
+    //   "interval": "15",
+    //   "timezone": "Etc/UTC",
+    //   "theme": "light",
+    //   "style": "2",
+    //   "locale": "en",
+    //   "toolbar_bg": "#f1f3f6",
+    //   "enable_publishing": false,
+    //   "hide_top_toolbar": true,
+    //   "container_id": "tradingview_f089c"
+    // }
+    //   );
+    //   </script>
+    // </div>
+    // <!-- TradingView Widget END -->`
+    //chartDiv.setAttribute('class', 'chart-container')
+    oneCard.setAttribute('id', `${element[`name`]}`)
+    clicky.textContent = 'info'
+    oneCard.setAttribute('class', 'coin-card')
+    text.textContent = `#${element['rank']} | ${element[`name`]} | $${coinPrice} | `
     cards.appendChild(oneCard)
     oneCard.appendChild(text)
+    text.appendChild(clicky)
     oneCard.appendChild(chartDiv)
+
+    cardExpand(clicky)
     });
+}
+
+// Card Expansion toggle Event Listener
+function cardExpand(buttonElement) {
+    let evenThenDisplay = 1 
+    buttonElement.addEventListener('click', () => {
+        evenThenDisplay += 1
+        //to display the new content
+        if ((evenThenDisplay % 2) == 0) {
+            console.log(evenThenDisplay + ' even')
+            addCardContent()
+        }
+        //to remove the new content
+        else if ((evenThenDisplay % 2) != 0) {
+            console.log(evenThenDisplay + ' odd')
+            removeCardContent()
+        }
+    })
+}
+
+function addCardContent() {
+    let newDiv = document.querySelector('')
+}
+
+function removeCardContent() {
+
 }
 
 // render list of coins
