@@ -14,6 +14,7 @@ function getCoins() {
         displayCoins(result.data)
         coinList(result.data)
         marketCap(result.data)
+        dailyVolume(result.data)
     })
     .catch(error => console.log('error', error));
     
@@ -79,8 +80,17 @@ function coinList(coinArray){
 
 // calculate market cap and render to page
 function marketCap (coinArray){
-    coinArray.reduce(coin => {
-        let coinCap = coin.marketCapUsd
+   let coinCap = coinArray.map((coinObj) => parseInt(coinObj.marketCapUsd))
+   let totalCap = coinCap.reduce((cap,coin) => cap + coin, 0) 
+   let market = document.querySelector('#marketCap')
+   market.textContent = `Market Cap: ${totalCap}`
+}
 
-    })
+// calculate daily movment and render to page
+function dailyVolume(coinArray){
+    let coinVolume = coinArray.map((coinObj) => parseInt(coinObj.volumeUsd24Hr) )
+    let totalDailyVolume = coinVolume.reduce((volume, coin) => volume + coin, 0)
+    let volume = document.querySelector('#dailyVolume')
+    volume.textContent = `24Hr Volume: ${totalDailyVolume}`
+    console.log(totalDailyVolume)
 }
