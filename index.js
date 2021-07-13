@@ -86,7 +86,7 @@ function cardExpand(buttonElement) {
 }
 
 function addCardContent() {
-    let newDiv = document.querySelector('')
+    //let newDiv = document.querySelector('')
 }
 
 function removeCardContent() {
