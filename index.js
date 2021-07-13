@@ -10,9 +10,10 @@ function getCoins() {
     fetch("https://api.coincap.io/v2/assets", requestOptions)
     .then(response => response.json())
     .then(result => {
-        // console.log(result.data)
+        console.log(result.data)
         displayCoins(result.data)
         coinList(result.data)
+        marketCap(result.data)
     })
     .catch(error => console.log('error', error));
     
@@ -74,8 +75,12 @@ function coinList(coinArray){
         listCoin.textContent = `${rank} ${name} ${symbol}`
         list.appendChild(listCoin)
     })
-    // grab the name, symbol and rank from the coinArray
-    // create an ordered list
-    // create a list item
-    // add the name, symbol and rank to the list item
+}
+
+// calculate market cap and render to page
+function marketCap (coinArray){
+    coinArray.reduce(coin => {
+        let coinCap = coin.marketCapUsd
+
+    })
 }
