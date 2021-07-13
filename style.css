@@ -1,8 +1,14 @@
 .coin-card {
     width:400px;
-    height: 400px;
+    height: auto;
     margin: auto;
 }
+
+.coin-card-expanded {
+    width: 400px;
+    height: 400px;
+}
+
 h1 {
     text-align: center;
     margin-bottom: 0%;
