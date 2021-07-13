@@ -1,9 +1,12 @@
-//this is a comment
+
 
 function  getData(){
-    fetch("api.coincap.io/v2/assets/")
+    fetch("https://api.coincap.io/v2/assets/")
     .then(resp => resp.json())
-    .then(data => console.log(data))
+    .then(json => json.data)
 }
-
 getData()
+
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault()
+})
