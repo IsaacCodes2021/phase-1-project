@@ -147,13 +147,17 @@ function dailyVolume(coinArray){
 }
 // search function
 function searchCoins(){
-    // grab the search value
     // call find on the coin-cards array using search value as the arg(?)
     // render searched coin on to the page
     document.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault()
-        return e.target[0].value
+        let searchValue = e.target[0].value
+        let coinsArray = document.querySelectorAll('.coin-card')
+        let searchArray = coinsArray.map(element => element.id)
+        let lowerCaseSearch = searchValue.toLowerCase()
+        let splitSearch = lowerCaseSearch.split(' ')
+        let searchTerm = splitSearch.join('-')
+        console.log(searchArray)
+        // coinsArray.includes(searchTerm)
     })
-    let coinsArray = document.querySelectorAll('.coin-card')
-    // console.log(searchForm)
 }
