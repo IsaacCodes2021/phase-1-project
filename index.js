@@ -30,31 +30,31 @@ function displayCoins(coinArray) {
     let chartDiv = document.createElement('div')
     let text = document.createElement('h1')
     let clicky = document.createElement('button')
-    // chartDiv.innerHTML =`<!-- TradingView Widget BEGIN -->
-    // <div class="tradingview-widget-container">
-    //   <div id="tradingview_f089c"></div>
-    //   <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
-    //   <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    //   <script type="text/javascript">
-    //   new TradingView.widget(
-    //   {
-    //   "autosize": true,
-    //   "symbol": "NASDAQ:AAPL",
-    //   "interval": "15",
-    //   "timezone": "Etc/UTC",
-    //   "theme": "light",
-    //   "style": "2",
-    //   "locale": "en",
-    //   "toolbar_bg": "#f1f3f6",
-    //   "enable_publishing": false,
-    //   "hide_top_toolbar": true,
-    //   "container_id": "tradingview_f089c"
-    // }
-    //   );
-    //   </script>
-    // </div>
-    // <!-- TradingView Widget END -->`
-    //chartDiv.setAttribute('class', 'chart-container')
+    chartDiv.innerHTML =`<!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+      <div id="tradingview_f089c"></div>
+      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+      <script type="text/javascript">
+      new TradingView.widget(
+      {
+      "autosize": true,
+      "symbol": "NASDAQ:AAPL",
+      "interval": "15",
+      "timezone": "Etc/UTC",
+      "theme": "light",
+      "style": "2",
+      "locale": "en",
+      "toolbar_bg": "#f1f3f6",
+      "enable_publishing": false,
+      "hide_top_toolbar": true,
+      "container_id": "tradingview_f089c"
+    }
+      );
+      </script>
+    </div>
+    <!-- TradingView Widget END -->`
+    chartDiv.setAttribute('class', 'chart-container')
     oneCard.setAttribute('id', `${element[`id`]}`) //
     clicky.textContent = 'info'
     oneCard.setAttribute('class', 'coin-card')
@@ -96,20 +96,20 @@ function addCardContent(coinName, coinArray) {
     let circSuply = document.createElement('p')
     let comments = document.createElement('div')
     let testComment = document.createElement('p')
-    let commentsForm = document.createElement('form')  // form needs event listener
+    let commentsForm = document.createElement('form')
     let commentSubmit = document.createElement('button')
     let commentInput = document.createElement('input')
     let commentHead = document.createElement('p')
-    
+       
     divNewdiv.setAttribute('class', `${coinName}-info`)
     divNewdiv.setAttribute('id', 'card-expanded')
     comments.setAttribute('id', 'comments')
+    commentInput.setAttribute('placeholder', 'comment')
+    commentInput.setAttribute('id', 'commentInput')
     marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
     volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
     circSuply.textContent = '$' + parseFloat(Number(coinArray.supply).toFixed(2))
     testComment.textContent = `${coinArray.name} is in an ACTUAL trashcan today`
-    commentInput.setAttribute('placeholder', 'comment')
-    commentInput.setAttribute('id', 'commentInput')
     commentSubmit.textContent = 'send'
     commentHead.textContent = 'Comments'
     commentHead.style = 'font-weight: bold; text-align: center;'
@@ -134,14 +134,18 @@ function removeCardContent(newClassName) {
 }
 
 // adds new comments
-function newComments(form, input, commentSection) {
+function newComments(form, input, commentSection, time) {
     form.addEventListener('submit',(e) => {
         e.preventDefault()
-        console.log(input.value)
         const newComment = document.createElement('p')
         newComment.textContent = input.value
-
+        let time = document.createElement('aside')
+        let currentDate = new Date();
+        
+        time.style = 'float:right; text-align: right'
+        time.textContent = currentDate.getHours() + ":" + currentDate.getMinutes();
         commentSection.appendChild(newComment)
+        newComment.appendChild(time)
     })
 
 }
