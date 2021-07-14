@@ -72,6 +72,7 @@ function cardExpand(buttonElement, coinName, coinArr) {
         }
     })
 }
+
 // adds card content after button is clicked
 function addCardContent(coinName, coinArray) {
     let divSelect = document.querySelector(`#${coinArray.id}`)
@@ -115,6 +116,7 @@ function addCardContent(coinName, coinArray) {
 
     newComments(commentsForm, commentInput, comments)
 }
+
 // removes card content after button is clicked
 function removeCardContent(newClassName) {
     // console.log(newClassName)
@@ -151,6 +153,10 @@ function coinList(coinArray){
         list.appendChild(listCoin)
     })
 }
+
+// create new array with just price values
+// get least and greatest price values
+// 
 
 // calculate market cap and render to page
 function marketCap (coinArray){
