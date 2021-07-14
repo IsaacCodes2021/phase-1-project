@@ -81,8 +81,8 @@ function cardExpand(buttonElement, coinName, coinArr) {
         // to remove the new content
         else if ((evenThenDisplay % 2) != 0) {
             buttonElement.textContent = 'info'
-            let className = `#${coinName}-info`
-            removeCardContent(className, coinArr)
+            let className = `.${coinName}-info`
+            removeCardContent(className)
         }
     })
 }
@@ -96,15 +96,16 @@ function addCardContent(coinName, coinArray) {
 
     
     divNewdiv.setAttribute('class', `${coinName}-info`)
+    divNewdiv.setAttribute('id', 'card-expanded')
     marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
     volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
     circSuply.textContent = '$' + parseFloat(Number(coinArray.supply).toFixed(2))
 
-    console.log(marketCap.textContent)
-    console.log(volume24Hr.textContent)
-    console.log(circSuply.textContent)
-    console.log(divSelect)
-    console.log(divNewdiv)
+    // console.log(marketCap.textContent)
+    // console.log(volume24Hr.textContent)
+    // console.log(circSuply.textContent)
+    // console.log(divSelect)
+    // console.log(divNewdiv)
 
     divSelect.appendChild(divNewdiv)
     divNewdiv.appendChild(marketCap)
