@@ -94,24 +94,38 @@ function addCardContent(coinName, coinArray) {
     let marketCap = document.createElement('p')
     let volume24Hr = document.createElement('p')
     let circSuply = document.createElement('p')
-
+    let comments = document.createElement('div')
+    let testComment = document.createElement('p')
+    let commentsForm = document.createElement('form')  // form needs event listener
+    let commentSubmit = document.createElement('button')
+    let commentInput = document.createElement('input')
+    let commentHead = document.createElement('p')
     
     divNewdiv.setAttribute('class', `${coinName}-info`)
     divNewdiv.setAttribute('id', 'card-expanded')
+    comments.setAttribute('id', 'comments')
     marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
     volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
     circSuply.textContent = '$' + parseFloat(Number(coinArray.supply).toFixed(2))
-
-    // console.log(marketCap.textContent)
-    // console.log(volume24Hr.textContent)
-    // console.log(circSuply.textContent)
-    // console.log(divSelect)
-    // console.log(divNewdiv)
+    testComment.textContent = `${coinArray.name} is in an ACTUAL trashcan today`
+    commentInput.setAttribute('placeholder', 'comment')
+    commentInput.setAttribute('id', 'commentInput')
+    commentSubmit.textContent = 'send'
+    commentHead.textContent = 'Comments'
+    commentHead.style = 'font-weight: bold; text-align: center;'
 
     divSelect.appendChild(divNewdiv)
     divNewdiv.appendChild(marketCap)
     divNewdiv.appendChild(volume24Hr)
     divNewdiv.appendChild(circSuply)
+    divNewdiv.appendChild(comments)
+    comments.appendChild(commentHead)
+    comments.appendChild(testComment)
+    divNewdiv.appendChild(commentsForm)
+    commentsForm.appendChild(commentInput)
+    commentsForm.appendChild(commentSubmit)
+
+    newComments(commentsForm, commentInput, comments)
 }
 // removes card content after button is clicked
 function removeCardContent(newClassName) {
@@ -119,6 +133,18 @@ function removeCardContent(newClassName) {
     document.querySelector(newClassName).remove()
 }
 
+// adds new comments
+function newComments(form, input, commentSection) {
+    form.addEventListener('submit',(e) => {
+        e.preventDefault()
+        console.log(input.value)
+        const newComment = document.createElement('p')
+        newComment.textContent = input.value
+
+        commentSection.appendChild(newComment)
+    })
+
+}
 
 // render list of coins
 function coinList(coinArray){
