@@ -10,11 +10,12 @@ function getCoins() {
     fetch("https://api.coincap.io/v2/assets", requestOptions)
     .then(response => response.json())
     .then(result => {
-        console.log(result.data)
+        // console.log(result.data)
         displayCoins(result.data)
         coinList(result.data)
         marketCap(result.data)
         dailyVolume(result.data)
+        searchCoins()
     })
     .catch(error => console.log('error', error));
     
@@ -54,7 +55,8 @@ function displayCoins(coinArray) {
     // </div>
     // <!-- TradingView Widget END -->`
     //chartDiv.setAttribute('class', 'chart-container')
-    oneCard.setAttribute('id', `${element[`name`]}`)
+    oneCard.setAttribute('id', `${element[`id`]}`)
+    // console.log(oneCard)
     clicky.textContent = 'info'
     oneCard.setAttribute('class', 'coin-card')
     text.textContent = `#${element['rank']} | ${element[`name`]} | $${coinPrice} | `
@@ -75,20 +77,20 @@ function cardExpand(buttonElement, coinName, coinArr) {
         evenThenDisplay += 1
         // to display the new content
         if ((evenThenDisplay % 2) == 0) {
-            console.log(evenThenDisplay + ' even')
+            // console.log(evenThenDisplay + ' even')
             addCardContent(coinName, coinArr)
         }
         // to remove the new content
         else if ((evenThenDisplay % 2) != 0) {
             let className = `#${coinName}-info`
-            console.log(evenThenDisplay + ' odd')
+            // console.log(evenThenDisplay + ' odd')
             removeCardContent(className)
         }
     })
 }
 // adds card content after button is clicked
 function addCardContent(coinName, coinArray) {
-    let divSelect = document.querySelector(`#${coinArray.name}`)
+    let divSelect = document.querySelector(`#${coinArray.id}`)
     let divNewdiv = document.createElement('div')
     let marketCap = document.createElement('h3')
     let volume24Hr = document.createElement('h3')
@@ -96,12 +98,12 @@ function addCardContent(coinName, coinArray) {
     
     divNewdiv.setAttribute('class', `${coinName}-info`)
     marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
-    console.log(marketCap.textContent)
+    // console.log(marketCap.textContent)
     volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
 
-    console.log(volume24Hr.textContent)
-    console.log(divSelect)
-    console.log(divNewdiv)
+    // console.log(volume24Hr.textContent)
+    // console.log(divSelect)
+    // console.log(divNewdiv)
 
     divSelect.appendChild(divNewdiv)
     divNewdiv.appendChild(marketCap)
@@ -109,9 +111,8 @@ function addCardContent(coinName, coinArray) {
 }
 // removes card content after button is clicked
 function removeCardContent(newClassName) {
-    console.log(newClassName)
+    // console.log(newClassName)
     document.querySelector(newClassName).remove()
-
 }
 
 
@@ -130,7 +131,7 @@ function coinList(coinArray){
 
 // calculate market cap and render to page
 function marketCap (coinArray){
-   let coinCap = coinArray.map((coinObj) => parseInt(coinObj.marketCapUsd))
+   let coinCap = coinArray.map((coinObj) => parseFloat(coinObj.marketCapUsd))
    let totalCap = coinCap.reduce((cap,coin) => cap + coin, 0) 
    let market = document.querySelector('#marketCap')
    market.textContent = `Market Cap: ${totalCap}`
@@ -138,9 +139,21 @@ function marketCap (coinArray){
 
 // calculate daily movment and render to page
 function dailyVolume(coinArray){
-    let coinVolume = coinArray.map((coinObj) => parseInt(coinObj.volumeUsd24Hr) )
+    let coinVolume = coinArray.map((coinObj) => parseFloat(coinObj.volumeUsd24Hr) )
     let totalDailyVolume = coinVolume.reduce((volume, coin) => volume + coin, 0)
     let volume = document.querySelector('#dailyVolume')
     volume.textContent = `24Hr Volume: ${totalDailyVolume}`
-    console.log(totalDailyVolume)
+    // console.log(totalDailyVolume)
+}
+// search function
+function searchCoins(){
+    // grab the search value
+    // call find on the coin-cards array using search value as the arg(?)
+    // render searched coin on to the page
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault()
+        return e.target[0].value
+    })
+    let coinsArray = document.querySelectorAll('.coin-card')
+    // console.log(searchForm)
 }
