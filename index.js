@@ -62,36 +62,58 @@ function displayCoins(coinArray) {
     oneCard.appendChild(text)
     text.appendChild(clicky)
     oneCard.appendChild(chartDiv)
-
-    cardExpand(clicky)
+    
+    let sendName = element['id']
+    cardExpand(clicky, sendName ,element)
     });
 }
 
 // Card Expansion toggle Event Listener
-function cardExpand(buttonElement) {
+function cardExpand(buttonElement, coinName, coinArr) {
     let evenThenDisplay = 1 
     buttonElement.addEventListener('click', () => {
         evenThenDisplay += 1
-        //to display the new content
+        // to display the new content
         if ((evenThenDisplay % 2) == 0) {
             console.log(evenThenDisplay + ' even')
-            addCardContent()
+            addCardContent(coinName, coinArr)
         }
-        //to remove the new content
+        // to remove the new content
         else if ((evenThenDisplay % 2) != 0) {
+            let className = `#${coinName}-info`
             console.log(evenThenDisplay + ' odd')
-            removeCardContent()
+            removeCardContent(className)
         }
     })
 }
+// adds card content after button is clicked
+function addCardContent(coinName, coinArray) {
+    let divSelect = document.querySelector(`#${coinArray.name}`)
+    let divNewdiv = document.createElement('div')
+    let marketCap = document.createElement('h3')
+    let volume24Hr = document.createElement('h3')
 
-function addCardContent() {
-    //let newDiv = document.querySelector('')
+    
+    divNewdiv.setAttribute('class', `${coinName}-info`)
+    marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
+    console.log(marketCap.textContent)
+    volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
+
+    console.log(volume24Hr.textContent)
+    console.log(divSelect)
+    console.log(divNewdiv)
+
+    divSelect.appendChild(divNewdiv)
+    divNewdiv.appendChild(marketCap)
+    divNewdiv.appendChild(volume24Hr)
+}
+// removes card content after button is clicked
+function removeCardContent(newClassName) {
+    console.log(newClassName)
+    document.querySelector(newClassName).remove()
+
 }
 
-function removeCardContent() {
-
-}
 
 // render list of coins
 function coinList(coinArray){
