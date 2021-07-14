@@ -27,34 +27,11 @@ function displayCoins(coinArray) {
     let cards = document.querySelector('#cards-container')
     let oneCard = document.createElement('div')
     let coinPrice = parseFloat(Number(element['priceUsd'])).toFixed(2)
-    let chartDiv = document.createElement('div')
+    //let chartDiv = document.createElement('div')
     let text = document.createElement('h1')
     let clicky = document.createElement('button')
-    chartDiv.innerHTML =`<!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container">
-      <div id="tradingview_f089c"></div>
-      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
-      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-      <script type="text/javascript">
-      new TradingView.widget(
-      {
-      "autosize": true,
-      "symbol": "NASDAQ:AAPL",
-      "interval": "15",
-      "timezone": "Etc/UTC",
-      "theme": "light",
-      "style": "2",
-      "locale": "en",
-      "toolbar_bg": "#f1f3f6",
-      "enable_publishing": false,
-      "hide_top_toolbar": true,
-      "container_id": "tradingview_f089c"
-    }
-      );
-      </script>
-    </div>
-    <!-- TradingView Widget END -->`
-    chartDiv.setAttribute('class', 'chart-container')
+    
+    //chartDiv.setAttribute('class', 'chart-container')
     oneCard.setAttribute('id', `${element[`id`]}`) //
     clicky.textContent = 'info'
     oneCard.setAttribute('class', 'coin-card')
@@ -62,7 +39,7 @@ function displayCoins(coinArray) {
     cards.appendChild(oneCard)
     oneCard.appendChild(text)
     text.appendChild(clicky)
-    oneCard.appendChild(chartDiv)
+    //oneCard.appendChild(chartDiv)
     
     let sendName = element['id']
     cardExpand(clicky, sendName ,element)
@@ -109,6 +86,9 @@ function addCardContent(coinName, coinArray) {
     marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
     volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
     circSuply.textContent = '$' + parseFloat(Number(coinArray.supply).toFixed(2))
+    marketCap.setAttribute('id', 'coin-data')
+    volume24Hr.setAttribute('id', 'coin-data')
+    circSuply.setAttribute('id', 'coin-data')
     testComment.textContent = `${coinArray.name} is in an ACTUAL trashcan today`
     commentSubmit.textContent = 'send'
     commentHead.textContent = 'Comments'
@@ -120,7 +100,7 @@ function addCardContent(coinName, coinArray) {
     divNewdiv.appendChild(circSuply)
     divNewdiv.appendChild(comments)
     comments.appendChild(commentHead)
-    comments.appendChild(testComment)
+    // comments.appendChild(testComment)
     divNewdiv.appendChild(commentsForm)
     commentsForm.appendChild(commentInput)
     commentsForm.appendChild(commentSubmit)
@@ -138,6 +118,7 @@ function newComments(form, input, commentSection, time) {
     form.addEventListener('submit',(e) => {
         e.preventDefault()
         const newComment = document.createElement('p')
+        newComment.setAttribute('id', 'new-comment')
         newComment.textContent = input.value
         let time = document.createElement('aside')
         let currentDate = new Date();
