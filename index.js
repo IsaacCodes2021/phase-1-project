@@ -55,8 +55,7 @@ function displayCoins(coinArray) {
     // </div>
     // <!-- TradingView Widget END -->`
     //chartDiv.setAttribute('class', 'chart-container')
-    oneCard.setAttribute('id', `${element[`id`]}`)
-    // console.log(oneCard)
+    oneCard.setAttribute('id', `${element[`id`]}`) //
     clicky.textContent = 'info'
     oneCard.setAttribute('class', 'coin-card')
     text.textContent = `#${element['rank']} | ${element[`name`]} | $${coinPrice} | `
@@ -77,13 +76,13 @@ function cardExpand(buttonElement, coinName, coinArr) {
         evenThenDisplay += 1
         // to display the new content
         if ((evenThenDisplay % 2) == 0) {
-            // console.log(evenThenDisplay + ' even')
+            buttonElement.textContent = 'collapse'
             addCardContent(coinName, coinArr)
         }
         // to remove the new content
         else if ((evenThenDisplay % 2) != 0) {
-            let className = `#${coinName}-info`
-            // console.log(evenThenDisplay + ' odd')
+            buttonElement.textContent = 'info'
+            let className = `.${coinName}-info`
             removeCardContent(className)
         }
     })
@@ -92,22 +91,27 @@ function cardExpand(buttonElement, coinName, coinArr) {
 function addCardContent(coinName, coinArray) {
     let divSelect = document.querySelector(`#${coinArray.id}`)
     let divNewdiv = document.createElement('div')
-    let marketCap = document.createElement('h3')
-    let volume24Hr = document.createElement('h3')
+    let marketCap = document.createElement('p')
+    let volume24Hr = document.createElement('p')
+    let circSuply = document.createElement('p')
 
     
     divNewdiv.setAttribute('class', `${coinName}-info`)
+    divNewdiv.setAttribute('id', 'card-expanded')
     marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
-    // console.log(marketCap.textContent)
     volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
+    circSuply.textContent = '$' + parseFloat(Number(coinArray.supply).toFixed(2))
 
+    // console.log(marketCap.textContent)
     // console.log(volume24Hr.textContent)
+    // console.log(circSuply.textContent)
     // console.log(divSelect)
     // console.log(divNewdiv)
 
     divSelect.appendChild(divNewdiv)
     divNewdiv.appendChild(marketCap)
     divNewdiv.appendChild(volume24Hr)
+    divNewdiv.appendChild(circSuply)
 }
 // removes card content after button is clicked
 function removeCardContent(newClassName) {
