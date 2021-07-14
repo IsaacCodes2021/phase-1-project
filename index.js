@@ -180,7 +180,7 @@ function searchCoins(){
     // call find on the coin-cards array using search value as the arg(?)
     // render searched coin on to the page
     let searchArray = []
-    document.querySelector('form').addEventListener('submit', (e) => {
+    document.querySelector('#search').addEventListener('submit', (e) => {
         e.preventDefault()
         let searchValue = e.target[0].value
         let coinsArray = document.querySelectorAll('.coin-card').forEach(element => searchArray.push(element.id))
@@ -189,9 +189,12 @@ function searchCoins(){
         let searchTerm = splitSearch.join('-')
         // console.log(searchArray)
         let searchResult = searchArray.includes(searchTerm)
-        console.log(searchResult)
-        // if searchResult is true
+        if (searchResult === true){
             let foundCard = document.querySelector(`#${searchTerm}`)
             foundCard.scrollIntoView()
+        } else {
+            alert("Coin not found.")
+        }
+            
     })
 }
