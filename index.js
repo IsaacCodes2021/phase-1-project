@@ -20,6 +20,14 @@ function getCoins() {
     .catch(error => console.log('error', error));
     
 }
+// fetch pricedata for id specific coins 
+// grabs the last 24 elements of the array, each worth one hour
+function getPriceHistory(id) {
+    console.log(id)
+    fetch(`https://api.coincap.io/v2/assets/${id}/history?interval=h1`)
+    .then(response => response.json())
+    .then(data => console.log(data.data.slice(-24)))
+}
 
 // display single coin by array function
 function displayCoins(coinArray) {
@@ -85,7 +93,7 @@ function addCardContent(coinName, coinArray) {
     commentInput.setAttribute('id', 'commentInput')
     marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
     volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
-    circSuply.textContent = '$' + parseFloat(Number(coinArray.supply).toFixed(2))
+    circSuply.textContent = parseFloat(Number(coinArray.supply).toFixed(2)) + ' coins'
     marketCap.setAttribute('id', 'coin-data')
     volume24Hr.setAttribute('id', 'coin-data')
     circSuply.setAttribute('id', 'coin-data')
