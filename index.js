@@ -76,7 +76,6 @@ function displayCoins(coinArray) {
     text.setAttribute('id', 'card-header')
     oneCard.setAttribute('id', `${element[`id`]}`) //
     clicky.textContent = 'info'
-    clicky.setAttribute('class' ,'button is-small is-info')
     oneCard.setAttribute('class', 'coin-card')
     text.textContent = `#${element['rank']} | ${element[`name`]} | $${Number(coinPrice).toLocaleString('en-US')} | `
     cards.appendChild(oneCard)
@@ -183,6 +182,21 @@ function newComments(form, input, commentSection, time) {
     })
 }
 
+//goes into
+function sortPriceHistory() {
+    let price24Hrs = []
+    document.querySelectorAll('.coin-card').forEach(e => {
+        debugger
+        price24Hrs.push(e.id
+    )})
+    //console.log(price24Hrs)
+    price24Hrs.forEach(e => {
+        //console.log(e)
+        getPriceHistory(e)
+        //for each priceUsd into a new array
+    })
+    
+}
 
 // render list of coins
 function coinList(coinArray){

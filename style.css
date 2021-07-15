@@ -25,14 +25,6 @@ padding-left: 347.59px;
     padding-right: 10px;
 }
 
-.bigChart {
-    height: 400;
-}
-
-.smallChart {
-    height: 200;
-}
-
 h1 {
     text-align: center;
     margin-bottom: 0%;
@@ -60,12 +52,17 @@ h1 {
 .sideBar{
     border: 1px solid black;
     border-radius: 5px;
-    width: 451;
+    width: auto;
+    min-width: 452px;
     float: left;
     position: fixed;
     top: 0;
     bottom: 0;
     overflow-y: auto;
+    margin-right: 10px;
+}
+tr {
+    border-bottom: 1px solid black;
 }
 tr.positive td.flux{
     color: #33ff33;
