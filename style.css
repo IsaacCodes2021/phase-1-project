@@ -1,7 +1,7 @@
 .coin-card {
     width: 600px;
     height: auto;
-    background-color: #7EA3CC;
+    background-color: #a9b0b8;
     border: 1px solid black;
     border-radius: 10px;
     padding: 10px;
@@ -11,9 +11,15 @@
 /* #card-container {
 
 } */
+#card-title {
+    text-align: center;
+    margin-bottom: 0%;
+    margin-top: 0%;
+}
 
 #card-expanded {
     width: 400px;
+    margin-left: 45px;
     /* height: 400px; */
 }
 
@@ -21,15 +27,36 @@ h1 {
     text-align: center;
     margin-bottom: 0%;
 }
+
 #sidebar{
     width: 30%;
     padding-right: .5rem;
     margin-right: .5rem;
     float: left;
 }
+
 #rankedList{
     list-style-type: none;
 }
+
+#search {
+    padding-left: 38px;
+}
+
 #market-totals{
     text-align: center;
+    border-bottom: 1px solid black;
+    padding-bottom: 7px;
+}
+
+#marketCap {
+    font-size: larger;
+    font-weight: bolder;
+    padding-right: 10px;
+}
+
+#dailyVolume {
+    font-size: larger;
+    font-weight: bolder;
+    padding-left: 10px;
 }
