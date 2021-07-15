@@ -127,6 +127,7 @@ function cardExpand(buttonElement, coinName, coinArr) {
 function addCardContent(coinName, coinArray) {
     let divSelect = document.querySelector(`#${coinArray.id}`)
     let divNewdiv = document.createElement('div')
+    let divMarketInfo = document.createElement('div')
     let marketCap = document.createElement('p')
     let volume24Hr = document.createElement('p')
     let circSuply = document.createElement('p')
@@ -138,6 +139,9 @@ function addCardContent(coinName, coinArray) {
     let commentHead = document.createElement('p')
     let lineChart = document.createElement('canvas')
        
+    divMarketInfo.setAttribute('class', `${coinName}-info-expanded`)
+    divMarketInfo.setAttribute('id', `dropdown-info`)
+
     divNewdiv.setAttribute('class', `${coinName}-info`)
     divNewdiv.setAttribute('id', 'card-expanded')
     comments.setAttribute('id', 'comments')
@@ -145,7 +149,6 @@ function addCardContent(coinName, coinArray) {
     commentInput.setAttribute('id', 'commentInput')
     commentsForm.setAttribute('id', 'comment-form')
     marketCap.textContent = "Market cap: $" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2)).toLocaleString('en-US')
-    // `24Hr Volume: $${Number(totalDailyVolume.toFixed(2)).toLocaleString('en-US')}`
     volume24Hr.textContent = '24 hour volume: $' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2)).toLocaleString('en-US')
     circSuply.textContent = 'circulating supply: ' + parseFloat(Number(coinArray.supply).toFixed(2)).toLocaleString('en-US')
     marketCap.setAttribute('id', 'coin-data')
@@ -160,13 +163,13 @@ function addCardContent(coinName, coinArray) {
     lineChart.setAttribute('width', '400')
 
     divSelect.appendChild(divNewdiv)
-    //divNewdiv.appendChild(lineChart)
-    divNewdiv.appendChild(marketCap)
-    divNewdiv.appendChild(volume24Hr)
-    divNewdiv.appendChild(circSuply)
+    divNewdiv.appendChild(divMarketInfo)
+    divMarketInfo.appendChild(marketCap)
+    divMarketInfo.appendChild(volume24Hr)
+    divMarketInfo.appendChild(circSuply)
     divNewdiv.appendChild(comments)
     comments.appendChild(commentHead)
-    // comments.appendChild(testComment)
+    
     divNewdiv.appendChild(commentsForm)
     commentsForm.appendChild(commentInput)
     commentsForm.appendChild(commentSubmit)
