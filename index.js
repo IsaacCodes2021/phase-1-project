@@ -10,7 +10,7 @@ function getCoins() {
     fetch("https://api.coincap.io/v2/assets", requestOptions)
     .then(response => response.json())
     .then(result => {
-        // console.log(result.data)
+        console.log(result.data)
         displayCoins(result.data)
         coinList(result.data)
         marketCap(result.data)
@@ -143,7 +143,6 @@ function newComments(form, input, commentSection) {
 
         commentSection.appendChild(newComment)
     })
-
 }
 
 // render list of coins
@@ -152,9 +151,15 @@ function coinList(coinArray){
         let name = coinObj.name
         let symbol = coinObj.symbol
         let rank = coinObj.rank
+        let coinFlux = parseFloat(coinObj.changePercent24Hr).toFixed(1)
         let list = document.querySelector('#rankedList')
         let listCoin = document.createElement('li')
-        listCoin.textContent = `${rank} | ${name} | ${symbol}`
+        if (coinFlux > 0){
+            listCoin.setAttribute('class', 'positive')
+        } else {
+            listCoin.setAttribute('class', 'negative')
+        }
+        listCoin.innerHTML = `${rank} | ${name} | ${symbol} | <span>${coinFlux}</span>`
         list.appendChild(listCoin)
     })
 }
@@ -162,9 +167,9 @@ function coinList(coinArray){
 // calculate market cap and render to page
 function marketCap (coinArray){
    let coinCap = coinArray.map((coinObj) => parseFloat(coinObj.marketCapUsd))
-   let totalCap = coinCap.reduce((cap,coin) => cap + coin, 0) 
+   let totalCap = coinCap.reduce((cap,coin) => cap + coin, 0)
    let market = document.querySelector('#marketCap')
-   market.textContent = `Market Cap: ${totalCap}`
+   market.textContent = `Market Cap: $${Number(totalCap.toFixed(2)).toLocaleString('en-US')}`
 }
 
 // calculate daily movment and render to page
@@ -172,13 +177,11 @@ function dailyVolume(coinArray){
     let coinVolume = coinArray.map((coinObj) => parseFloat(coinObj.volumeUsd24Hr) )
     let totalDailyVolume = coinVolume.reduce((volume, coin) => volume + coin, 0)
     let volume = document.querySelector('#dailyVolume')
-    volume.textContent = `24Hr Volume: ${totalDailyVolume}`
+    volume.textContent = `24Hr Volume: $${Number(totalDailyVolume.toFixed(2)).toLocaleString('en-US')}`
     // console.log(totalDailyVolume)
 }
 // search function
 function searchCoins(){
-    // call find on the coin-cards array using search value as the arg(?)
-    // render searched coin on to the page
     let searchArray = []
     document.querySelector('#search').addEventListener('submit', (e) => {
         e.preventDefault()
@@ -187,14 +190,12 @@ function searchCoins(){
         let lowerCaseSearch = searchValue.toLowerCase()
         let splitSearch = lowerCaseSearch.split(' ')
         let searchTerm = splitSearch.join('-')
-        // console.log(searchArray)
         let searchResult = searchArray.includes(searchTerm)
         if (searchResult === true){
             let foundCard = document.querySelector(`#${searchTerm}`)
             foundCard.scrollIntoView()
         } else {
             alert("Coin not found.")
-        }
-            
+        } 
     })
 }

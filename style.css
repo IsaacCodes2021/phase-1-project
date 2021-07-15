@@ -2,6 +2,7 @@
     width: 600px;
     height: auto;
     margin: auto;
+    float: center;
 }
 
 #card-expanded {
@@ -17,13 +18,23 @@ h1 {
     height: 363px;
 }
 #sidebar{
-    width: 30%;
-    padding-right: .5rem;
-    margin-right: .5rem;
+    width: 17%;
+    padding-left: 0rem;
+    margin-left: 0rem;
     float: left;
+    border: 1px solid black;
 }
 #rankedList{
     list-style-type: none;
+}
+#rankedList li#listKey{
+    font-weight: bold;
+}
+#rankedList li.positive span{
+    color : green;
+}
+#rankedList li.negative span{
+    color: red;
 }
 #market-totals{
     text-align: center;
