@@ -23,11 +23,44 @@ function getCoins() {
 // fetch pricedata for id specific coins 
 // grabs the last 24 elements of the array, each worth one hour
 function getPriceHistory(id) {
-    return fetch(`https://api.coincap.io/v2/assets/${id}/history?interval=h1`)
+    fetch(`https://api.coincap.io/v2/assets/${id}/history?interval=h1`)
     .then(response => response.json())
-    .then(data => data.data.slice(-24))
-    
+    //add a function that sends out each data set to grab usdValues and makes a new array
+    .then(data => buildPriceArray(data.data.slice(-24), id))
 }
+
+// takes in new array of priceHistoyy objects and gets price history into a new array
+function buildPriceArray(pricreObj, nameValue) {
+    let priceArray = []
+    pricreObj.forEach(element => {
+        priceArray.push(element.priceUsd)
+    })
+    buildGraph(nameValue, priceArray)
+}
+
+// takes in array of price history and assigns it to the data points needed for the graph?
+function buildGraph(currencyName, priceHistory) {
+    let chart = document.createElement('canvas')
+    chart.setAttribute('id', 'lineChart')
+    chart.setAttribute('height', '400')
+    chart.setAttribute('width', '600')
+    let lineChart = new Chart(chart, {
+        type: 'line',
+        data: {
+            labels: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'],
+            datasets: [{
+              label: currencyName,
+              data: priceHistory,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
+          }
+    })
+    let coinCard = document.querySelector(`#${currencyName}`)
+    coinCard.appendChild(chart)
+}
+
 
 // display single coin by array function
 function displayCoins(coinArray) {
@@ -51,6 +84,7 @@ function displayCoins(coinArray) {
     
     let sendName = element['id']
     cardExpand(clicky, sendName ,element)
+    getPriceHistory(element.id)
     });
 }
 
@@ -95,7 +129,7 @@ function addCardContent(coinName, coinArray) {
     commentInput.setAttribute('id', 'commentInput')
     marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
     volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
-    circSuply.textContent = parseFloat(Number(coinArray.supply).toFixed(2)) + ' coins'
+    circSuply.textContent = '$' + parseFloat(Number(coinArray.supply).toFixed(2))
     marketCap.setAttribute('id', 'coin-data')
     volume24Hr.setAttribute('id', 'coin-data')
     circSuply.setAttribute('id', 'coin-data')
@@ -146,16 +180,17 @@ function newComments(form, input, commentSection, time) {
 
 }
 
-// create new array with just price values
-// get least and greatest price values
+//goes into
 function sortPriceHistory() {
-    let min = undefined
-    let max = undefined
     let price24Hrs = []
-    document.querySelectorAll('.coin-card').forEach(e => price24Hrs.push(e.id))
+    document.querySelectorAll('.coin-card').forEach(e => {
+        debugger
+        price24Hrs.push(e.id
+    )})
+    //console.log(price24Hrs)
     price24Hrs.forEach(e => {
-        console.log(e)
-        (getPriceHistory(e))
+        //console.log(e)
+        getPriceHistory(e)
         //for each priceUsd into a new array
     })
     
