@@ -206,23 +206,24 @@ function coinList(coinArray){
         let rank = coinObj.rank
         let coinFlux = parseFloat(coinObj.changePercent24Hr).toFixed(1)
         let list = document.querySelector('#rankedList')
-        let listCoin = document.createElement('li')
+        let listCoin = document.createElement('tr')
         let coinLink = document.createElement('a')
         coinLink.setAttribute('href',`#${coinObj.id}`)
         coinLink.setAttribute('class', 'button is-small is-info')
-        listCoin.setAttribute('class', 'columns is-narrow')
         if ((rank % 2) === 0){
             listCoin.setAttribute('id', 'evenRank')
-           
         }else {
             listCoin.setAttribute('id', 'oddRank')
         }
-        // if (coinFlux > 0){
-        //     listCoin.setAttribute('class', 'positive')
-        // } else {
-        //     listCoin.setAttribute('class', 'negative')
-        // }
-        listCoin.innerHTML = `<span class = 'column'>${rank}</span><span class = 'column'>${name}</span><span class = 'column'>${symbol}</span><span class= 'column' id = 'flux'>${coinFlux}</span>`
+        if (coinFlux > 0){
+            listCoin.setAttribute('class', 'positive')
+        } else {
+            listCoin.setAttribute('class', 'negative')
+        }
+        listCoin.innerHTML = `<td class = 'rank'>${rank}</td>
+                              <td class = 'name'>${name}</td>
+                              <td class = 'symbol'>${symbol}</td>
+                              <td class = 'coinFlux'>${coinFlux}</td>`
         coinLink.textContent = " Go To Coin"
         listCoin.append(coinLink)
         list.appendChild(listCoin)

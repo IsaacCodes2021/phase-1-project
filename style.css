@@ -29,19 +29,6 @@ h1 {
     text-align: center;
     margin-bottom: 0%;
 }
-#sidebar{
-    position: fixed;
-    width: 20%;
-    padding: auto;
-    margin: auto;
-    float: left;
-    border: 1px solid black;
-    border-radius: 10px;
-    overflow-y: scroll;
-    top: 0;
-    bottom: 0;
-}
-
 #doc-title {
     padding-left: 347.59px;
     text-align: center;
@@ -49,24 +36,6 @@ h1 {
     font-weight: bolder ;
     padding-top: 20px;
 
-}
-
-#rankedList{
-    font-family: Arial;
-    list-style-type: none;
-}
-#rankedList li#evenRank{
-    background: #7EA3CC;
-}
-#rankedList li#listKey{
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-}
-#rankedList li.positive span#flux{
-    color : green;
-}
-#rankedList li.negative span#flux{
-    color: red;
 }
 #market-totals{
     font-family: Arial;
@@ -80,11 +49,22 @@ h1 {
     padding-left: 347.59px;
 
 }
-
-#dailyVolume {
-    padding-left: 10px;
+.sideBar{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: auto;
+    float: left;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
 }
-#marketCap {
-    padding-right: 15px;
-    border-right: 1px solid;
+tr#oddRank{
+    background-color: #7EA3CC;
+}
+tr.positive td.coinFlux{
+    color: #33ff33;
+}
+tr.negative td.coinFlux{
+    color: red;
 }
