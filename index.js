@@ -48,7 +48,7 @@ function buildPriceArray(pricreObj, nameValue) {
 }
 
 // takes in array of price history and assigns it to the data points needed for the graph?
-function buildGraph(currencyName, priceHistory, color) {
+function buildGraph(currencyName, priceHistory, color, height) {
     let chart = document.createElement('canvas')
     chart.setAttribute('id', 'lineChart')
     chart.setAttribute('height', '400')
@@ -83,7 +83,7 @@ function displayCoins(coinArray) {
     oneCard.setAttribute('id', `${element[`id`]}`) //
     text.setAttribute('id', 'card-title')
     clicky.textContent = 'info'
-    clicky.setAttribute("class", "button is-small is-link")
+    clicky.setAttribute("class", "button is-small is-link is-rounded")
     oneCard.setAttribute('class', 'coin-card')
     text.textContent = `#${element['rank']} | ${element[`name`]} | $${Number(coinPrice).toLocaleString('en-US')} | `
     cards.appendChild(oneCard)
@@ -139,7 +139,9 @@ function addCardContent(coinName, coinArray) {
     comments.setAttribute('id', 'comments')
     commentInput.setAttribute('placeholder', 'comment')
     commentInput.setAttribute('id', 'commentInput')
+    commentInput.setAttribute('class', 'input is-rounded is-small')
     commentsForm.setAttribute('id', 'comment-form')
+    commentSubmit.setAttribute("class", "button is-small is-link is-rounded")
     marketCap.textContent = "Market cap: $" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2)).toLocaleString('en-US')
     volume24Hr.textContent = '24 hour volume: $' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2)).toLocaleString('en-US')
     circSuply.textContent = 'circulating supply: ' + parseFloat(Number(coinArray.supply).toFixed(2)).toLocaleString('en-US')
