@@ -52,7 +52,7 @@ function buildGraph(currencyName, priceHistory) {
               label: currencyName,
               data: priceHistory,
               fill: false,
-              borderColor: 'rgb(75, 192, 192)',
+              borderColor: 'rgb(0, 0, 0)',
               tension: 0.1
             }]
           }
