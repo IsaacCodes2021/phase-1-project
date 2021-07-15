@@ -262,8 +262,14 @@ function searchCoins(){
 }
 function biggestChange(coinArray){
     let changeArray = coinArray.map(coinObj =>{
-        let container = {}
-        container[coinObj.name] = coinObj.changePercent24Hr
-        console.log(container)
-    } )
+        const container = {}
+        container.name = coinObj.name
+        container.change = coinObj.changePercent24Hr
+        return container
+    })
+    let biggestGrowth = Math.max.apply(Math,changeArray.map(o => o.change))
+    let biggestLoss = Math.min.apply(Math,changeArray.map(o => o.change))
+    let biggestGrowthCoin = changeArray.find(o => o.change == biggestGrowth)
+    let biggestLossCoin = changeArray.find(o => o.change == biggestLoss)
+    console.log(biggestLossCoin)
 }
