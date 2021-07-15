@@ -6,9 +6,10 @@
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
         <script defer src="./index.js"></script>
         <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     </head>
     <body>
-        <h1 style="text-align: center;">BitBook</h1>
+        <h1 id="doc-title">BitBook</h1>
         <br>
         <form id = 'search'>
             <input type="text" placeholder="search cyrptos"> <button>search</button>
@@ -17,10 +18,17 @@
             <span id = 'marketCap'>MarketCap: xxxxxx</span>      
             <span id = 'dailyVolume'>24hr. volume: xxxxxx</span>
         </div>
-        <aside id='sidebar'>
-            <ol id = 'rankedList'>
-            </ol>
-        </aside>
-            <div id="cards-container" style="width: 100%;"></div>
+        <div class = 'sideBar'>
+            <table id = 'rankedList'>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>% Change</th>
+                    <th>Link</th>
+                </tr>
+            </table>
+        </div>
+            <div id="cards-container"></div>
     </body>
 </html>

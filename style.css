@@ -1,3 +1,7 @@
+body {
+    color: white;
+}
+
 .coin-card {
     width: 600px;
     height: auto;
@@ -8,35 +12,39 @@
     margin: 10px auto;
 }
 
-/* #card-container {
-
-} */
-#card-title {
-    text-align: center;
-    margin-bottom: 0%;
-    margin-top: 0%;
+#cards-container {
+padding-left: 477.59px;
 }
 
 #card-expanded {
-    width: 400px;
+    width: 530px;
     margin-left: 45px;
-    /* height: 400px; */
+    border-top: 1px solid;
+}
+
+#dropdpwn-info {
+    width: 250px;
+}
+
+#card-header {
+    font-weight: bold;
+}
+
+#commentInput {
+    padding-right: 10px;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 0%;
 }
+#doc-title {
+    padding-left: 451.59px;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bolder ;
+    padding-top: 20px;
 
-#sidebar{
-    width: 30%;
-    padding-right: .5rem;
-    margin-right: .5rem;
-    float: left;
-}
-
-#rankedList{
-    list-style-type: none;
 }
 
 #search {
@@ -44,19 +52,38 @@ h1 {
 }
 
 #market-totals{
+    font-family: Arial;
+    font-size: larger;
     text-align: center;
+    padding-top: 10px;
+    padding-left: 451.59px;
+}
+#search{
+    text-align: center;
+    padding-left: 451.59px;
+
+}
+.sideBar{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: auto;
+    min-width: 452px;
+    float: left;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    margin-right: 10px;
+}
+tr {
     border-bottom: 1px solid black;
-    padding-bottom: 7px;
 }
-
-#marketCap {
-    font-size: larger;
-    font-weight: bolder;
-    padding-right: 10px;
+tr.positive td.flux{
+    color: #33ff33;
 }
-
-#dailyVolume {
-    font-size: larger;
-    font-weight: bolder;
-    padding-left: 10px;
+tr.negative td.flux{
+    color: red;
+}
+tr td.link a{
+    color: white;
 }

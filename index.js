@@ -10,7 +10,7 @@ function getCoins() {
     fetch("https://api.coincap.io/v2/assets", requestOptions)
     .then(response => response.json())
     .then(result => {
-        // console.log(result.data)
+        console.log(result.data)
         displayCoins(result.data)
         coinList(result.data)
         marketCap(result.data)
@@ -31,15 +31,30 @@ function getPriceHistory(id) {
 
 // takes in new array of priceHistoyy objects and gets price history into a new array
 function buildPriceArray(pricreObj, nameValue) {
+    //debugger
     let priceArray = []
     pricreObj.forEach(element => {
         priceArray.push(element.priceUsd)
     })
-    buildGraph(nameValue, priceArray)
+    let colorVal = '(0,0,0)'
+    if (parseFloat(priceArray[0]) < parseFloat(priceArray[23])) {
+        //console.log(priceArray[0] + "   "+ priceArray[-1])
+        colorVal = 'rgb(51,255,51)'
+        console.log('yes')
+    }
+    else if (parseFloat(priceArray[0]) > parseFloat(priceArray[23])){
+        colorVal = 'rgb(255,0,0)'
+        console.log('no')
+        //console.log(priceArray[0] + "   "+ priceArray[-1])
+    }
+    buildGraph(nameValue, priceArray, colorVal)
 }
 
 // takes in array of price history and assigns it to the data points needed for the graph?
-function buildGraph(currencyName, priceHistory) {
+function buildGraph(currencyName, priceHistory, color) {
+    //debugger
+    // console.log(`${currencyName} open: ${priceHistory[0]} close ${priceHistory[-1]}`)
+    // console.log(parseFloat(priceHistory[0]))
     let chart = document.createElement('canvas')
     chart.setAttribute('id', 'lineChart')
     chart.setAttribute('height', '400')
@@ -51,12 +66,13 @@ function buildGraph(currencyName, priceHistory) {
             datasets: [{
               label: `${currencyName} 24hr price mocement`,
               data: priceHistory,
-              fill: false,
-              borderColor: 'rgb(0, 0, 0)',
+              fill: true,
+              borderColor: color,
               tension: 0.1
             }]
           }
     })
+    console.log(lineChart)
     let coinCard = document.querySelector(`#${currencyName}`)
     coinCard.appendChild(chart)
 }
@@ -72,11 +88,12 @@ function displayCoins(coinArray) {
     let clicky = document.createElement('button')
     
     // chartDiv.setAttribute('class', 'chart-container')
+    text.setAttribute('id', 'card-header')
     oneCard.setAttribute('id', `${element[`id`]}`) //
     text.setAttribute('id', 'card-title')
     clicky.textContent = 'info'
     oneCard.setAttribute('class', 'coin-card')
-    text.textContent = `#${element['rank']} | ${element[`name`]} | $${coinPrice} | `
+    text.textContent = `#${element['rank']} | ${element[`name`]} | $${Number(coinPrice).toLocaleString('en-US')} | `
     cards.appendChild(oneCard)
     oneCard.appendChild(text)
     text.appendChild(clicky)
@@ -111,6 +128,7 @@ function cardExpand(buttonElement, coinName, coinArr) {
 function addCardContent(coinName, coinArray) {
     let divSelect = document.querySelector(`#${coinArray.id}`)
     let divNewdiv = document.createElement('div')
+    let divMarketInfo = document.createElement('div')
     let marketCap = document.createElement('p')
     let volume24Hr = document.createElement('p')
     let circSuply = document.createElement('p')
@@ -122,14 +140,18 @@ function addCardContent(coinName, coinArray) {
     let commentHead = document.createElement('p')
     let lineChart = document.createElement('canvas')
        
+    divMarketInfo.setAttribute('class', `${coinName}-info-expanded`)
+    divMarketInfo.setAttribute('id', `dropdown-info`)
+
     divNewdiv.setAttribute('class', `${coinName}-info`)
     divNewdiv.setAttribute('id', 'card-expanded')
     comments.setAttribute('id', 'comments')
     commentInput.setAttribute('placeholder', 'comment')
     commentInput.setAttribute('id', 'commentInput')
-    marketCap.textContent = "Market cap: $" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
-    volume24Hr.textContent = '24 hour volume: $' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
-    circSuply.textContent = 'circulating supply: ' + parseFloat(Number(coinArray.supply).toFixed(2))
+    commentsForm.setAttribute('id', 'comment-form')
+    marketCap.textContent = "Market cap: $" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2)).toLocaleString('en-US')
+    volume24Hr.textContent = '24 hour volume: $' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2)).toLocaleString('en-US')
+    circSuply.textContent = 'circulating supply: ' + parseFloat(Number(coinArray.supply).toFixed(2)).toLocaleString('en-US')
     marketCap.setAttribute('id', 'coin-data')
     volume24Hr.setAttribute('id', 'coin-data')
     circSuply.setAttribute('id', 'coin-data')
@@ -142,13 +164,13 @@ function addCardContent(coinName, coinArray) {
     lineChart.setAttribute('width', '400')
 
     divSelect.appendChild(divNewdiv)
-    //divNewdiv.appendChild(lineChart)
-    divNewdiv.appendChild(marketCap)
-    divNewdiv.appendChild(volume24Hr)
-    divNewdiv.appendChild(circSuply)
+    divNewdiv.appendChild(divMarketInfo)
+    divMarketInfo.appendChild(marketCap)
+    divMarketInfo.appendChild(volume24Hr)
+    divMarketInfo.appendChild(circSuply)
     divNewdiv.appendChild(comments)
     comments.appendChild(commentHead)
-    // comments.appendChild(testComment)
+    
     divNewdiv.appendChild(commentsForm)
     commentsForm.appendChild(commentInput)
     commentsForm.appendChild(commentSubmit)
@@ -177,7 +199,6 @@ function newComments(form, input, commentSection, time) {
         commentSection.appendChild(newComment)
         newComment.appendChild(time)
     })
-
 }
 
 //goes into
@@ -202,9 +223,24 @@ function coinList(coinArray){
         let name = coinObj.name
         let symbol = coinObj.symbol
         let rank = coinObj.rank
+        let coinFlux = parseFloat(coinObj.changePercent24Hr).toFixed(1)
         let list = document.querySelector('#rankedList')
-        let listCoin = document.createElement('li')
-        listCoin.textContent = `${rank} | ${name} | ${symbol}`
+        let listCoin = document.createElement('tr')
+        if ((rank % 2) === 0){
+            listCoin.setAttribute('id', 'evenRank')
+        }else {
+            listCoin.setAttribute('id', 'oddRank')
+        }
+        if (coinFlux > 0){
+            listCoin.setAttribute('class', 'positive')
+        } else {
+            listCoin.setAttribute('class', 'negative')
+        }
+        listCoin.innerHTML = `<td class = 'rank'>${rank}</td>
+                              <td class = 'name'>${name}</td>
+                              <td class = 'symbol'>${symbol}</td>
+                              <td class = 'flux'>${coinFlux}</td>
+                              <td class = 'link'><a href = '#${coinObj.id}' class = 'button is-small is-link' >Go To Coin</a></td>`
         list.appendChild(listCoin)
     })
 }
@@ -212,9 +248,9 @@ function coinList(coinArray){
 // calculate market cap and render to page
 function marketCap (coinArray){
    let coinCap = coinArray.map((coinObj) => parseFloat(coinObj.marketCapUsd))
-   let totalCap = coinCap.reduce((cap,coin) => cap + coin, 0) 
+   let totalCap = coinCap.reduce((cap,coin) => cap + coin, 0)
    let market = document.querySelector('#marketCap')
-   market.textContent = `Market Cap: ${totalCap}`
+   market.textContent = `Market Cap: $${Number(totalCap.toFixed(2)).toLocaleString('en-US')}`
 }
 
 // calculate daily movment and render to page
@@ -222,13 +258,11 @@ function dailyVolume(coinArray){
     let coinVolume = coinArray.map((coinObj) => parseFloat(coinObj.volumeUsd24Hr) )
     let totalDailyVolume = coinVolume.reduce((volume, coin) => volume + coin, 0)
     let volume = document.querySelector('#dailyVolume')
-    volume.textContent = `24Hr Volume: ${totalDailyVolume}`
+    volume.textContent = `24Hr Volume: $${Number(totalDailyVolume.toFixed(2)).toLocaleString('en-US')}`
     // console.log(totalDailyVolume)
 }
 // search function
 function searchCoins(){
-    // call find on the coin-cards array using search value as the arg(?)
-    // render searched coin on to the page
     let searchArray = []
     document.querySelector('#search').addEventListener('submit', (e) => {
         e.preventDefault()
@@ -237,14 +271,12 @@ function searchCoins(){
         let lowerCaseSearch = searchValue.toLowerCase()
         let splitSearch = lowerCaseSearch.split(' ')
         let searchTerm = splitSearch.join('-')
-        // console.log(searchArray)
         let searchResult = searchArray.includes(searchTerm)
         if (searchResult === true){
             let foundCard = document.querySelector(`#${searchTerm}`)
             foundCard.scrollIntoView()
         } else {
             alert("Coin not found.")
-        }
-            
+        } 
     })
 }
