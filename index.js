@@ -31,15 +31,30 @@ function getPriceHistory(id) {
 
 // takes in new array of priceHistoyy objects and gets price history into a new array
 function buildPriceArray(pricreObj, nameValue) {
+    //debugger
     let priceArray = []
     pricreObj.forEach(element => {
         priceArray.push(element.priceUsd)
     })
-    buildGraph(nameValue, priceArray)
+    let colorVal = '(0,0,0)'
+    if (parseFloat(priceArray[0]) < parseFloat(priceArray[23])) {
+        //console.log(priceArray[0] + "   "+ priceArray[-1])
+        colorVal = 'rgb(51,255,51)'
+        console.log('yes')
+    }
+    else if (parseFloat(priceArray[0]) > parseFloat(priceArray[23])){
+        colorVal = 'rgb(255,0,0)'
+        console.log('no')
+        //console.log(priceArray[0] + "   "+ priceArray[-1])
+    }
+    buildGraph(nameValue, priceArray, colorVal)
 }
 
 // takes in array of price history and assigns it to the data points needed for the graph?
-function buildGraph(currencyName, priceHistory) {
+function buildGraph(currencyName, priceHistory, color) {
+    //debugger
+    // console.log(`${currencyName} open: ${priceHistory[0]} close ${priceHistory[-1]}`)
+    // console.log(parseFloat(priceHistory[0]))
     let chart = document.createElement('canvas')
     chart.setAttribute('id', 'lineChart')
     chart.setAttribute('height', '400')
@@ -51,16 +66,16 @@ function buildGraph(currencyName, priceHistory) {
             datasets: [{
               label: currencyName,
               data: priceHistory,
-              fill: false,
-              borderColor: 'rgb(0, 0, 0)',
+              fill: true,
+              borderColor: color,
               tension: 0.1
             }]
           }
     })
+    console.log(lineChart)
     let coinCard = document.querySelector(`#${currencyName}`)
     coinCard.appendChild(chart)
 }
-
 
 // display single coin by array function
 function displayCoins(coinArray) {
