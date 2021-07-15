@@ -25,6 +25,14 @@ padding-left: 347.59px;
     padding-right: 10px;
 }
 
+.bigChart {
+    height: 400;
+}
+
+.smallChart {
+    height: 200;
+}
+
 h1 {
     text-align: center;
     margin-bottom: 0%;
