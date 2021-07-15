@@ -76,6 +76,7 @@ function displayCoins(coinArray) {
     text.setAttribute('id', 'card-header')
     oneCard.setAttribute('id', `${element[`id`]}`) //
     clicky.textContent = 'info'
+    clicky.setAttribute('class' ,'button is-small is-info')
     oneCard.setAttribute('class', 'coin-card')
     text.textContent = `#${element['rank']} | ${element[`name`]} | $${Number(coinPrice).toLocaleString('en-US')} | `
     cards.appendChild(oneCard)
