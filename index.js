@@ -23,10 +23,10 @@ function getCoins() {
 // fetch pricedata for id specific coins 
 // grabs the last 24 elements of the array, each worth one hour
 function getPriceHistory(id) {
-    console.log(id)
-    fetch(`https://api.coincap.io/v2/assets/${id}/history?interval=h1`)
+    return fetch(`https://api.coincap.io/v2/assets/${id}/history?interval=h1`)
     .then(response => response.json())
-    .then(data => console.log(data.data.slice(-24)))
+    .then(data => data.data.slice(-24))
+    
 }
 
 // display single coin by array function
@@ -35,11 +35,11 @@ function displayCoins(coinArray) {
     let cards = document.querySelector('#cards-container')
     let oneCard = document.createElement('div')
     let coinPrice = parseFloat(Number(element['priceUsd'])).toFixed(2)
-    //let chartDiv = document.createElement('div')
+    // let chartDiv = document.createElement('div')
     let text = document.createElement('h1')
     let clicky = document.createElement('button')
     
-    //chartDiv.setAttribute('class', 'chart-container')
+    // chartDiv.setAttribute('class', 'chart-container')
     oneCard.setAttribute('id', `${element[`id`]}`) //
     clicky.textContent = 'info'
     oneCard.setAttribute('class', 'coin-card')
@@ -47,7 +47,7 @@ function displayCoins(coinArray) {
     cards.appendChild(oneCard)
     oneCard.appendChild(text)
     text.appendChild(clicky)
-    //oneCard.appendChild(chartDiv)
+    // append chart here
     
     let sendName = element['id']
     cardExpand(clicky, sendName ,element)
@@ -86,6 +86,7 @@ function addCardContent(coinName, coinArray) {
     let commentSubmit = document.createElement('button')
     let commentInput = document.createElement('input')
     let commentHead = document.createElement('p')
+    let lineChart = document.createElement('canvas')
        
     divNewdiv.setAttribute('class', `${coinName}-info`)
     divNewdiv.setAttribute('id', 'card-expanded')
@@ -102,8 +103,12 @@ function addCardContent(coinName, coinArray) {
     commentSubmit.textContent = 'send'
     commentHead.textContent = 'Comments'
     commentHead.style = 'font-weight: bold; text-align: center;'
+    lineChart.setAttribute('id', 'lineChart')
+    lineChart.setAttribute('height', '400')
+    lineChart.setAttribute('width', '400')
 
     divSelect.appendChild(divNewdiv)
+    //divNewdiv.appendChild(lineChart)
     divNewdiv.appendChild(marketCap)
     divNewdiv.appendChild(volume24Hr)
     divNewdiv.appendChild(circSuply)
@@ -141,6 +146,20 @@ function newComments(form, input, commentSection, time) {
 
 }
 
+// create new array with just price values
+// get least and greatest price values
+
+function sortPriceHistory() {
+    let min = undefined
+    let max = undefined
+    let price24Hrs = []
+    document.querySelectorAll('.coin-card').forEach(e => price24Hrs.push(e.id))
+    price24Hrs.forEach(e => {
+        (getPriceHistory(e))
+    })
+    
+}
+
 // render list of coins
 function coinList(coinArray){
     coinArray.forEach(coinObj => {
@@ -153,10 +172,6 @@ function coinList(coinArray){
         list.appendChild(listCoin)
     })
 }
-
-// create new array with just price values
-// get least and greatest price values
-// 
 
 // calculate market cap and render to page
 function marketCap (coinArray){
