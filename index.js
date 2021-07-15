@@ -289,3 +289,6 @@ function biggestChange(coinArray){
     DOMGains.innerHTML = `Biggest Daily Gains: ${biggestGrowthCoin.name} @ <span id = 'gains'>${parseFloat(biggestGrowthCoin.change).toFixed(2)}</span>`
     DOMLosses.innerHTML = `Biggest Daily Losses: ${biggestLossCoin.name} @ <span id = 'losses'>${parseFloat(biggestLossCoin.change).toFixed(2)}</span`
 }
+function smoothScroll(){
+    document.querySelectorAll('a').addEventListener('click', )
+}
