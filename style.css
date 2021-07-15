@@ -8,13 +8,18 @@
     margin: 10px auto;
 }
 
-/* #card-container {
-
-} */
+#cards-container {
+padding-left: 347.59px;
+}
 
 #card-expanded {
-    width: 400px;
-    /* height: 400px; */
+    width: 530px;
+    margin-left: 45px;
+    border-top: 1px solid;
+}
+
+#commentInput {
+    padding-right: 10px;
 }
 
 h1 {
@@ -33,6 +38,12 @@ h1 {
     top: 0;
     bottom: 0;
 }
+
+#doc-title {
+    padding-left: 347.59px;
+    text-align: center;
+}
+
 #rankedList{
     font-family: Arial;
     list-style-type: none;
@@ -54,8 +65,11 @@ h1 {
     font-family: Arial;
     font-size: larger;
     text-align: center;
+    padding-top: 10px;
+    padding-left: 347.59px;
 }
 #search{
     text-align: center;
+    padding-left: 347.59px;
 
 }
