@@ -12,17 +12,12 @@ body {
     margin: 10px auto;
 }
 
-/* #card-container {
-
-} */
-#card-title {
-    text-align: center;
-    margin-bottom: 0%;
-    margin-top: 0%;
+#cards-container {
+padding-left: 477.59px;
 }
 
 #card-expanded {
-    width: 400px;
+    width: 530px;
     margin-left: 45px;
     border-top: 1px solid;
 }
@@ -43,16 +38,13 @@ h1 {
     text-align: center;
     margin-bottom: 0%;
 }
+#doc-title {
+    padding-left: 451.59px;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bolder ;
+    padding-top: 20px;
 
-#sidebar{
-    width: 30%;
-    padding-right: .5rem;
-    margin-right: .5rem;
-    float: left;
-}
-
-#rankedList{
-    list-style-type: none;
 }
 
 #search {
