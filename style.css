@@ -53,16 +53,13 @@ h1 {
     text-align: center;
     margin-bottom: 0%;
 }
+#doc-title {
+    padding-left: 451.59px;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bolder ;
+    padding-top: 20px;
 
-#sidebar{
-    width: 30%;
-    padding-right: .5rem;
-    margin-right: .5rem;
-    float: left;
-}
-
-#rankedList{
-    list-style-type: none;
 }
 
 #search {
@@ -104,4 +101,13 @@ tr.negative td.flux{
 }
 tr td.link a{
     color: white;
+}
+input.input {
+    width: 200px
+}
+span#gains {
+    color: green
+}
+span#losses{
+    color: red;
 }
