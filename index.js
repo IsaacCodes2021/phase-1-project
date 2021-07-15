@@ -148,14 +148,15 @@ function newComments(form, input, commentSection, time) {
 
 // create new array with just price values
 // get least and greatest price values
-
 function sortPriceHistory() {
     let min = undefined
     let max = undefined
     let price24Hrs = []
     document.querySelectorAll('.coin-card').forEach(e => price24Hrs.push(e.id))
     price24Hrs.forEach(e => {
+        console.log(e)
         (getPriceHistory(e))
+        //for each priceUsd into a new array
     })
     
 }
