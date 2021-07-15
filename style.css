@@ -52,19 +52,19 @@ h1 {
 .sideBar{
     border: 1px solid black;
     border-radius: 5px;
-    width: auto;
+    width: 451;
     float: left;
     position: fixed;
     top: 0;
     bottom: 0;
     overflow-y: auto;
 }
-tr#oddRank{
-    background-color: #7EA3CC;
-}
-tr.positive td.coinFlux{
+tr.positive td.flux{
     color: #33ff33;
 }
-tr.negative td.coinFlux{
+tr.negative td.flux{
     color: red;
+}
+tr td.link a{
+    color: white;
 }
