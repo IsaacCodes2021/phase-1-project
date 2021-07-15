@@ -22,16 +22,20 @@ h1 {
     margin-bottom: 0%;
 }
 #sidebar{
-    width: 17%;
-    padding-left: 0rem;
-    margin-left: 0rem;
+    width: 20%;
     float: left;
     border: 1px solid black;
+    border-radius: 10px;
 }
 #rankedList{
+    font-family: Arial;
     list-style-type: none;
 }
+#rankedList li#evenRank{
+    background: #7EA3CC;
+}
 #rankedList li#listKey{
+    font-family: Arial, sans-serif;
     font-weight: bold;
 }
 #rankedList li.positive span{
@@ -41,5 +45,20 @@ h1 {
     color: red;
 }
 #market-totals{
+    font-family: Arial;
+    font-size: larger;
     text-align: center;
+}
+a{
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+}
+a:hover{
+    background: black;
+    color: white;
+}
+#search{
+    text-align: center;
+
 }
