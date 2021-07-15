@@ -5,42 +5,48 @@ body {
 .coin-card {
     width: 600px;
     height: auto;
-    background-color: #7EA3CC;
+    background-color: #a9b0b8;
     border: 1px solid black;
     border-radius: 10px;
     padding: 10px;
     margin: 10px auto;
 }
 
-#cards-container {
-padding-left: 477.59px;
+/* #card-container {
+
+} */
+#card-title {
+    text-align: center;
+    margin-bottom: 0%;
+    margin-top: 0%;
 }
 
 #card-expanded {
-    width: 530px;
+    width: 400px;
     margin-left: 45px;
-    border-top: 1px solid;
-}
-#card-header {
-    font-weight: bold;
-}
-
-#commentInput {
-    padding-right: 10px;
+    /* height: 400px; */
 }
 
 h1 {
     text-align: center;
     margin-bottom: 0%;
 }
-#doc-title {
-    padding-left: 451.59px;
-    text-align: center;
-    font-size: x-large;
-    font-weight: bolder ;
-    padding-top: 20px;
 
+#sidebar{
+    width: 30%;
+    padding-right: .5rem;
+    margin-right: .5rem;
+    float: left;
 }
+
+#rankedList{
+    list-style-type: none;
+}
+
+#search {
+    padding-left: 38px;
+}
+
 #market-totals{
     font-family: Arial;
     font-size: larger;

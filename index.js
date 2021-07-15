@@ -50,7 +50,7 @@ function buildGraph(currencyName, priceHistory) {
         data: {
             labels: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'],
             datasets: [{
-              label: currencyName,
+              label: `${currencyName} 24hr price mocement`,
               data: priceHistory,
               fill: false,
               borderColor: 'rgb(0, 0, 0)',
@@ -62,7 +62,6 @@ function buildGraph(currencyName, priceHistory) {
     coinCard.appendChild(chart)
 }
 
-
 // display single coin by array function
 function displayCoins(coinArray) {
     coinArray.forEach(element => {
@@ -70,12 +69,13 @@ function displayCoins(coinArray) {
     let oneCard = document.createElement('div')
     let coinPrice = parseFloat(Number(element['priceUsd'])).toFixed(2)
     // let chartDiv = document.createElement('div')
-    let text = document.createElement('h1')
+    let text = document.createElement('h2')
     let clicky = document.createElement('button')
     
     // chartDiv.setAttribute('class', 'chart-container')
     text.setAttribute('id', 'card-header')
     oneCard.setAttribute('id', `${element[`id`]}`) //
+    text.setAttribute('id', 'card-title')
     clicky.textContent = 'info'
     oneCard.setAttribute('class', 'coin-card')
     text.textContent = `#${element['rank']} | ${element[`name`]} | $${Number(coinPrice).toLocaleString('en-US')} | `
@@ -129,11 +129,9 @@ function addCardContent(coinName, coinArray) {
     comments.setAttribute('id', 'comments')
     commentInput.setAttribute('placeholder', 'comment')
     commentInput.setAttribute('id', 'commentInput')
-    commentsForm.setAttribute('id', 'comment-form')
-    marketCap.textContent = "Market cap: $" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2)).toLocaleString('en-US')
-    // `24Hr Volume: $${Number(totalDailyVolume.toFixed(2)).toLocaleString('en-US')}`
-    volume24Hr.textContent = '24 hour volume: $' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2)).toLocaleString('en-US')
-    circSuply.textContent = 'circulating supply: ' + parseFloat(Number(coinArray.supply).toFixed(2)).toLocaleString('en-US')
+    marketCap.textContent = "Market cap: $" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
+    volume24Hr.textContent = '24 hour volume: $' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
+    circSuply.textContent = 'circulating supply: ' + parseFloat(Number(coinArray.supply).toFixed(2))
     marketCap.setAttribute('id', 'coin-data')
     volume24Hr.setAttribute('id', 'coin-data')
     circSuply.setAttribute('id', 'coin-data')
