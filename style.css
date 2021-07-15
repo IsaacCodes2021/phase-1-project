@@ -97,3 +97,6 @@ tr.negative td.flux{
 tr td.link a{
     color: white;
 }
+input.input {
+    width: 200px
+}
