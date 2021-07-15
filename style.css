@@ -4,11 +4,6 @@ html {
 body {
     color: white;
 }
-#doc-title {
-    margin-top: 10 px;
-    font-weight: bold;
-    text-align: center;
-}
 
 .coin-card {
     width: 600px;
@@ -57,7 +52,7 @@ h1 {
     margin-bottom: 0%;
 }
 #doc-title {
-    /* padding-left: 451.59px; */
+    padding-left: 451.59px;
     text-align: center;
     font-size: x-large;
     font-weight: bolder ;
