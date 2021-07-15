@@ -73,6 +73,7 @@ function displayCoins(coinArray) {
     let clicky = document.createElement('button')
     
     // chartDiv.setAttribute('class', 'chart-container')
+    text.setAttribute('id', 'card-header')
     oneCard.setAttribute('id', `${element[`id`]}`) //
     clicky.textContent = 'info'
     oneCard.setAttribute('class', 'coin-card')
@@ -128,9 +129,9 @@ function addCardContent(coinName, coinArray) {
     commentInput.setAttribute('placeholder', 'comment')
     commentInput.setAttribute('id', 'commentInput')
     commentsForm.setAttribute('id', 'comment-form')
-    marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
-    volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
-    circSuply.textContent = '$' + parseFloat(Number(coinArray.supply).toFixed(2))
+    marketCap.textContent = "Market cap: $" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
+    volume24Hr.textContent = '24 hour volume: $' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
+    circSuply.textContent = 'circulating supply: ' + parseFloat(Number(coinArray.supply).toFixed(2))
     marketCap.setAttribute('id', 'coin-data')
     volume24Hr.setAttribute('id', 'coin-data')
     circSuply.setAttribute('id', 'coin-data')

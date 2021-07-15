@@ -8,14 +8,16 @@
     margin: 10px auto;
 }
 
-/* #card-container {
-
-} */
+#cards-container {
+padding-left: 347.59px;
+}
 
 #card-expanded {
-    width: 400px;
-    /* height: 400px; */
+    width: 530px;
+    margin-left: 45px;
+    border-top: 1px solid;
 }
+
 #commentInput {
     padding-right: 10px;
 }
@@ -34,6 +36,8 @@ h1 {
     top: 0;
     bottom: 0;
 }
+
+
 #rankedList{
     font-family: Arial;
     list-style-type: none;
