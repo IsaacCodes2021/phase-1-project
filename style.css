@@ -54,7 +54,7 @@ h1 {
     margin-bottom: 0%;
 }
 #doc-title {
-    padding-left: 451.59px;
+    /* padding-left: 451.59px; */
     text-align: center;
     font-size: x-large;
     font-weight: bolder ;
@@ -94,7 +94,7 @@ tr {
     border-bottom: 1px solid black;
 }
 tr.positive td.flux{
-    color: #33ff33;
+    color: #080;
 }
 tr.negative td.flux{
     color: red;
@@ -106,7 +106,7 @@ input.input {
     width: 200px
 }
 span#gains {
-    color: green
+    color: #080;
 }
 span#losses{
     color: red;

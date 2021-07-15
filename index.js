@@ -233,7 +233,7 @@ function coinList(coinArray){
                               <td class = 'name'>${name}</td>
                               <td class = 'symbol'>${symbol}</td>
                               <td class = 'flux'>${coinFlux}</td>
-                              <td class = 'link'><a href = '#${coinObj.id}' class = 'button is-small is-link' >Go To Coin</a></td>`
+                              <td class = 'link'><a href = '#${coinObj.id}' class = 'button is-small is-link is-rounded' >Go To Coin</a></td>`
         list.appendChild(listCoin)
     })
 }
