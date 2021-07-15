@@ -91,7 +91,6 @@ function displayCoins(coinArray) {
     text.setAttribute('id', 'card-header')
     oneCard.setAttribute('id', `${element[`id`]}`) //
     clicky.textContent = 'info'
-    clicky.setAttribute('class' ,'button is-small is-info')
     oneCard.setAttribute('class', 'coin-card')
     text.textContent = `#${element['rank']} | ${element[`name`]} | $${Number(coinPrice).toLocaleString('en-US')} | `
     cards.appendChild(oneCard)
@@ -198,6 +197,21 @@ function newComments(form, input, commentSection, time) {
     })
 }
 
+//goes into
+function sortPriceHistory() {
+    let price24Hrs = []
+    document.querySelectorAll('.coin-card').forEach(e => {
+        debugger
+        price24Hrs.push(e.id
+    )})
+    //console.log(price24Hrs)
+    price24Hrs.forEach(e => {
+        //console.log(e)
+        getPriceHistory(e)
+        //for each priceUsd into a new array
+    })
+    
+}
 
 // render list of coins
 function coinList(coinArray){
@@ -208,9 +222,6 @@ function coinList(coinArray){
         let coinFlux = parseFloat(coinObj.changePercent24Hr).toFixed(1)
         let list = document.querySelector('#rankedList')
         let listCoin = document.createElement('tr')
-        let coinLink = document.createElement('a')
-        coinLink.setAttribute('href',`#${coinObj.id}`)
-        coinLink.setAttribute('class', 'button is-small is-info')
         if ((rank % 2) === 0){
             listCoin.setAttribute('id', 'evenRank')
         }else {
@@ -224,9 +235,8 @@ function coinList(coinArray){
         listCoin.innerHTML = `<td class = 'rank'>${rank}</td>
                               <td class = 'name'>${name}</td>
                               <td class = 'symbol'>${symbol}</td>
-                              <td class = 'coinFlux'>${coinFlux}</td>`
-        coinLink.textContent = " Go To Coin"
-        listCoin.append(coinLink)
+                              <td class = 'flux'>${coinFlux}</td>
+                              <td class = 'link'><a href = '#${coinObj.id}' class = 'button is-small is-link' >Go To Coin</a></td>`
         list.appendChild(listCoin)
     })
 }

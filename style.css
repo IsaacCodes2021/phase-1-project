@@ -29,14 +29,6 @@ padding-left: 477.59px;
     padding-right: 10px;
 }
 
-.bigChart {
-    height: 400;
-}
-
-.smallChart {
-    height: 200;
-}
-
 h1 {
     text-align: center;
     margin-bottom: 0%;
@@ -65,18 +57,23 @@ h1 {
     border: 1px solid black;
     border-radius: 5px;
     width: auto;
+    min-width: 452px;
     float: left;
     position: fixed;
     top: 0;
     bottom: 0;
     overflow-y: auto;
+    margin-right: 10px;
 }
-tr#oddRank{
-    background-color: #7EA3CC;
+tr {
+    border-bottom: 1px solid black;
 }
-tr.positive td.coinFlux{
+tr.positive td.flux{
     color: #33ff33;
 }
-tr.negative td.coinFlux{
+tr.negative td.flux{
     color: red;
+}
+tr td.link a{
+    color: white;
 }
