@@ -127,6 +127,7 @@ function addCardContent(coinName, coinArray) {
     comments.setAttribute('id', 'comments')
     commentInput.setAttribute('placeholder', 'comment')
     commentInput.setAttribute('id', 'commentInput')
+    commentsForm.setAttribute('id', 'comment-form')
     marketCap.textContent = "$" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
     volume24Hr.textContent = '$' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
     circSuply.textContent = '$' + parseFloat(Number(coinArray.supply).toFixed(2))

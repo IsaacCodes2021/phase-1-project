@@ -16,6 +16,9 @@
     width: 400px;
     /* height: 400px; */
 }
+#commentInput {
+    padding-right: 10px;
+}
 
 h1 {
     text-align: center;
