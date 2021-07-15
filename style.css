@@ -22,10 +22,14 @@ h1 {
     margin-bottom: 0%;
 }
 #sidebar{
+    position: fixed;
     width: 20%;
     float: left;
     border: 1px solid black;
     border-radius: 10px;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
 }
 #rankedList{
     font-family: Arial;
