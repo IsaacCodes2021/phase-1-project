@@ -39,7 +39,7 @@ function buildPriceArray(pricreObj, nameValue) {
     // changes the color of the line based on day open price
     let colorVal = '(0,0,0)'
     if (parseFloat(priceArray[0]) < parseFloat(priceArray[23])) {
-        colorVal = 'rgb(51,255,51)'
+        colorVal = 'rgb(0,128,0)'
     }
     else if (parseFloat(priceArray[0]) > parseFloat(priceArray[23])){
         colorVal = 'rgb(255,0,0)'

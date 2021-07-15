@@ -2,9 +2,9 @@ body {
     color: white;
 }
 #doc-title {
-    margin-left: 451.69px;
     margin-top: 10 px;
     font-weight: bold;
+    text-align: center;
 }
 
 .coin-card {
