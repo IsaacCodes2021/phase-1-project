@@ -284,6 +284,6 @@ function biggestChange(coinArray){
     let biggestLossCoin = changeArray.find(o => o.change == biggestLoss)
     let DOMGains = document.querySelector('.biggestGains')
     let DOMLosses = document.querySelector('.biggestLosses')
-    DOMGains.textContent = `Biggest Daily Gains: ${biggestGrowthCoin.name} @ ${parseFloat(biggestGrowthCoin.change).toFixed(2)}`
-    DOMLosses.textContent = `Biggest Daily Losses: ${biggestLossCoin.name} @ ${parseFloat(biggestLossCoin.change).toFixed(2)}`
+    DOMGains.innerHTML = `Biggest Daily Gains: ${biggestGrowthCoin.name} @ <span id = 'gains'>${parseFloat(biggestGrowthCoin.change).toFixed(2)}</span>`
+    DOMLosses.innerHTML = `Biggest Daily Losses: ${biggestLossCoin.name} @ <span id = 'losses'>${parseFloat(biggestLossCoin.change).toFixed(2)}</span`
 }

@@ -100,3 +100,9 @@ tr td.link a{
 input.input {
     width: 200px
 }
+span#gains {
+    color: green
+}
+span#losses{
+    color: red;
+}
