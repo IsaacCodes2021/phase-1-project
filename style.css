@@ -24,6 +24,8 @@ h1 {
 #sidebar{
     position: fixed;
     width: 20%;
+    padding: auto;
+    margin: auto;
     float: left;
     border: 1px solid black;
     border-radius: 10px;
@@ -42,25 +44,16 @@ h1 {
     font-family: Arial, sans-serif;
     font-weight: bold;
 }
-#rankedList li.positive span{
+#rankedList li.positive span#flux{
     color : green;
 }
-#rankedList li.negative span{
+#rankedList li.negative span#flux{
     color: red;
 }
 #market-totals{
     font-family: Arial;
     font-size: larger;
     text-align: center;
-}
-a{
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-}
-a:hover{
-    background: black;
-    color: white;
 }
 #search{
     text-align: center;
