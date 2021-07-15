@@ -3,6 +3,7 @@ body {
 }
 #doc-title {
     margin-left: 451.69px;
+    margin-top: 10 px;
     font-weight: bold;
 }
 
@@ -27,7 +28,7 @@ body {
 }
 
 #card-expanded {
-    width: 530px;
+    width: 525px;
     margin-left: 45px;
     border-top: 1px solid;
 }
@@ -42,6 +43,10 @@ body {
 
 #commentInput {
     padding-right: 10px;
+    width: 200px;
+}
+#commnet-sub {
+    padding-left: 10px;
 }
 
 h1 {
