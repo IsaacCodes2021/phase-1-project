@@ -17,6 +17,9 @@ padding-left: 347.59px;
     margin-left: 45px;
     border-top: 1px solid;
 }
+#card-header {
+    font-weight: bold;
+}
 
 #commentInput {
     padding-right: 10px;
@@ -40,6 +43,10 @@ h1 {
 #doc-title {
     padding-left: 347.59px;
     text-align: center;
+    font-size: x-large;
+    font-weight: bolder ;
+    padding-top: 20px;
+
 }
 
 #rankedList{
@@ -79,4 +86,12 @@ a:hover{
     text-align: center;
     padding-left: 347.59px;
 
+}
+
+#dailyVolume {
+    padding-left: 10px;
+}
+#marketCap {
+    padding-right: 15px;
+    border-right: 1px solid;
 }
