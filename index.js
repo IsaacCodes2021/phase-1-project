@@ -77,7 +77,7 @@ function displayCoins(coinArray) {
     oneCard.setAttribute('id', `${element[`id`]}`) //
     clicky.textContent = 'info'
     oneCard.setAttribute('class', 'coin-card')
-    text.textContent = `#${element['rank']} | ${element[`name`]} | $${coinPrice} | `
+    text.textContent = `#${element['rank']} | ${element[`name`]} | $${Number(coinPrice).toLocaleString('en-US')} | `
     cards.appendChild(oneCard)
     oneCard.appendChild(text)
     text.appendChild(clicky)
@@ -129,9 +129,10 @@ function addCardContent(coinName, coinArray) {
     commentInput.setAttribute('placeholder', 'comment')
     commentInput.setAttribute('id', 'commentInput')
     commentsForm.setAttribute('id', 'comment-form')
-    marketCap.textContent = "Market cap: $" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2))
-    volume24Hr.textContent = '24 hour volume: $' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2))
-    circSuply.textContent = 'circulating supply: ' + parseFloat(Number(coinArray.supply).toFixed(2))
+    marketCap.textContent = "Market cap: $" + parseFloat(Number(coinArray.marketCapUsd).toFixed(2)).toLocaleString('en-US')
+    // `24Hr Volume: $${Number(totalDailyVolume.toFixed(2)).toLocaleString('en-US')}`
+    volume24Hr.textContent = '24 hour volume: $' + parseFloat(Number(coinArray.volumeUsd24Hr).toFixed(2)).toLocaleString('en-US')
+    circSuply.textContent = 'circulating supply: ' + parseFloat(Number(coinArray.supply).toFixed(2)).toLocaleString('en-US')
     marketCap.setAttribute('id', 'coin-data')
     volume24Hr.setAttribute('id', 'coin-data')
     circSuply.setAttribute('id', 'coin-data')
