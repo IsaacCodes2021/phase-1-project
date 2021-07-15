@@ -36,11 +36,19 @@ function buildPriceArray(pricreObj, nameValue) {
     pricreObj.forEach(element => {
         priceArray.push(element.priceUsd)
     })
-    buildGraph(nameValue, priceArray)
+    // changes the color of the line based on day open price
+    let colorVal = '(0,0,0)'
+    if (parseFloat(priceArray[0]) < parseFloat(priceArray[23])) {
+        colorVal = 'rgb(51,255,51)'
+    }
+    else if (parseFloat(priceArray[0]) > parseFloat(priceArray[23])){
+        colorVal = 'rgb(255,0,0)'
+    }
+    buildGraph(nameValue, priceArray, colorVal)
 }
 
 // takes in array of price history and assigns it to the data points needed for the graph?
-function buildGraph(currencyName, priceHistory) {
+function buildGraph(currencyName, priceHistory, color) {
     let chart = document.createElement('canvas')
     chart.setAttribute('id', 'lineChart')
     chart.setAttribute('height', '400')
@@ -53,7 +61,7 @@ function buildGraph(currencyName, priceHistory) {
               label: `${currencyName} 24hr price mocement`,
               data: priceHistory,
               fill: false,
-              borderColor: 'rgb(0, 0, 0)',
+              borderColor: color,
               tension: 0.1
             }]
           }
@@ -68,21 +76,19 @@ function displayCoins(coinArray) {
     let cards = document.querySelector('#cards-container')
     let oneCard = document.createElement('div')
     let coinPrice = parseFloat(Number(element['priceUsd'])).toFixed(2)
-    // let chartDiv = document.createElement('div')
     let text = document.createElement('h2')
     let clicky = document.createElement('button')
     
-    // chartDiv.setAttribute('class', 'chart-container')
     text.setAttribute('id', 'card-header')
     oneCard.setAttribute('id', `${element[`id`]}`) //
     text.setAttribute('id', 'card-title')
     clicky.textContent = 'info'
+    clicky.setAttribute("class", "button is-small is-link")
     oneCard.setAttribute('class', 'coin-card')
     text.textContent = `#${element['rank']} | ${element[`name`]} | $${Number(coinPrice).toLocaleString('en-US')} | `
     cards.appendChild(oneCard)
     oneCard.appendChild(text)
     text.appendChild(clicky)
-    // append chart here
     
     let sendName = element['id']
     cardExpand(clicky, sendName ,element)

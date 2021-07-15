@@ -1,11 +1,15 @@
 body {
     color: white;
 }
+#doc-title {
+    margin-left: 451.69px;
+    font-weight: bold;
+}
 
 .coin-card {
     width: 600px;
     height: auto;
-    background-color: #a9b0b8;
+    /* background-color: #a9b0b8; */
     border: 1px solid black;
     border-radius: 10px;
     padding: 10px;
