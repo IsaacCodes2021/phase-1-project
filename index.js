@@ -58,7 +58,7 @@ function buildGraph(currencyName, priceHistory, color, height) {
         data: {
             labels: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'],
             datasets: [{
-              label: `${currencyName} 24hr price mocement`,
+              label: `${currencyName} 24hr price movement`,
               data: priceHistory,
               fill: false,
               borderColor: color,
@@ -286,7 +286,7 @@ function biggestChange(coinArray){
     let biggestLossCoin = changeArray.find(o => o.change == biggestLoss)
     let DOMGains = document.querySelector('.biggestGains')
     let DOMLosses = document.querySelector('.biggestLosses')
-    DOMGains.innerHTML = `Biggest Daily Gains: ${biggestGrowthCoin.name} @ <span id = 'gains'>${parseFloat(biggestGrowthCoin.change).toFixed(2)}%</span>`
+    DOMGains.innerHTML = `Biggest Daily Gains: ${biggestGrowthCoin.name} @ <span id = 'gains'>${parseFloat(biggestGrowthCoin.change).toFixed(2)}% <a href</span>`
     DOMLosses.innerHTML = `Biggest Daily Losses: ${biggestLossCoin.name} @ <span id = 'losses'>${parseFloat(biggestLossCoin.change).toFixed(2)}%</span`
 }
 
