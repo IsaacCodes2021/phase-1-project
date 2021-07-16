@@ -232,7 +232,7 @@ function coinList(coinArray){
         listCoin.innerHTML = `<td class = 'rank'>${rank}</td>
                               <td class = 'name'>${name}</td>
                               <td class = 'symbol'>${symbol}</td>
-                              <td class = 'flux'>${coinFlux}</td>
+                              <td class = 'flux'>${coinFlux}%</td>
                               <td class = 'link'><a href = '#${coinObj.id}' class = 'button is-small is-link is-rounded' >Go To Coin</a></td>`
         list.appendChild(listCoin)
     })
@@ -289,9 +289,7 @@ function biggestChange(coinArray){
     DOMGains.innerHTML = `Biggest Daily Gains: ${biggestGrowthCoin.name} @ <span id = 'gains'>${parseFloat(biggestGrowthCoin.change).toFixed(2)}</span>`
     DOMLosses.innerHTML = `Biggest Daily Losses: ${biggestLossCoin.name} @ <span id = 'losses'>${parseFloat(biggestLossCoin.change).toFixed(2)}</span`
 }
-function smoothScroll(){
-    document.querySelectorAll('a').addEventListener('click', )
-}
+
 // scroll to top 
 const mybutton = document.getElementById("myBtn");
 body.appendChild(mybutton)
